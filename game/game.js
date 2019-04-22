@@ -139,7 +139,7 @@ function rendLines() {
   fill("#545861");
   rect(boxheight * goal, gHeight-boxheight/2, boxheight, boxheight);
 
-  strokeWeight(5);
+  
   stroke("#6b6d73");
   noFill();
   for (var x = 0; x < box_row; x++) {
@@ -147,6 +147,7 @@ function rendLines() {
       rect(x * boxheight, y * boxheight, boxheight, boxheight);
     }
   }
+  strokeWeight(5);
   stroke("#545861");
   fill("#545861");
   line(0, gHeight - boxheight/2, gHeight, gHeight - boxheight/2);
