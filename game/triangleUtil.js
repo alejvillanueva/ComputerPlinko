@@ -33,6 +33,10 @@ function boxObj(input = "", in2 = "") {
   return this;
 }
 
+boxObj.prototype.isEmpty = function() {
+  return this.t === 0 && this.b === 0 && this.l === 0 && this.r === 0;
+};
+
 function checkHover() {
   if (mouseX >= gHeight || mouseY > gHeight) { return; }
 
@@ -63,7 +67,7 @@ function addTrianglesToWorld() {
     isStatic: true
   }, {
     restitution: 0,
-    friction: .5,
+    friction: .2,
     isStatic: false,
     label: "falltri"
   }]
