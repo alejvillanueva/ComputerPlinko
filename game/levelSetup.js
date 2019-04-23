@@ -1,4 +1,8 @@
 function levelSetup(l) {
+  if (l === levels.length - 1) {
+    states = {levelSelector:true, levelDropping:false, levelDropped:false, levelPlay: false};
+    return ;
+  }
   level = l;
   resetGrid();
   // console.log(levels[l]["permitted"]);
