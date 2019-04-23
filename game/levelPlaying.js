@@ -1,4 +1,5 @@
 function levelPlay() {
+  var goToSelect = false;
   checkHover();
   rendBoxes();
   rendLines();
@@ -6,8 +7,24 @@ function levelPlay() {
     rendMouse();
   }
   rendLines();
-  rendKey();
   ball.show();
+  if (mouseRect(gHeight + (gWidth - gHeight)/2 - 100, gHeight - 100, 200, 40)) {
+    fill("blue");
+    if (mouseIsPressed) {
+      goToSelect = true;
+      states = {levelSelector:true, levelDropping:false, levelDropped:false, levelPlay: false};
+    }
+  } else {
+    fill("grey");
+  }
+  rect(gHeight + (gWidth - gHeight)/2 - 100, gHeight - 100, 200, 40);
+  textSize(20);
+  fill("white");
+  text("RETURN TO MENU",gHeight + (gWidth - gHeight)/2 , gHeight - 78);
+  rendKey();
+  if (goToSelect) {
+    background("#545861");
+  }
 }
 
 function levelPlaymousePressed() {
@@ -35,7 +52,7 @@ function levelPlaykeyPressed() {
     isStatic: true
   };
   if (key == " ") {
-    world.gravity.y = 1;
+    world.gravity.y = .8;
     addTrianglesToWorld();
     World.add(world, Bodies.rectangle(gHeight + 10, gHeight, 20, gHeight * 2, options));
     World.add(world, Bodies.rectangle(0, gHeight + 20, gHeight * 2, 40, options));
