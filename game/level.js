@@ -1,9 +1,50 @@
 var levels = [
 	{
+		//Tutorial Level, should say something like press space to drop ball
+		//Three coloumns
+		goal: 1,
+		permitted: 0,
+		boxes: []
+	},
+
+	{
+		//Tutorial Level, should say something like you re allowed to use
+		//these green pieces to help ball. For this level, show where the green triangle goes
+		//Three coloumns
+		goal: 0,
+		permitted: 1,
+		boxes: [[0, 7, 'b', ''], [1, 7, 'b', '']]
+
+	},
+
+	{
+		//Same kinda level
+		//Three Columns
+		goal: 2,
+		permitted: 5,
+		boxes: [[0, 7, 'b', ''], [2, 7, 'b', '']]
+	},
+
+	{
+		//Four Columns
+		goal: 3,
+		permitted: 5,
+		boxes: [[0, 3, 'b', ''], [2, 9, 'r', ''], [2, 11, 'r', ''], [2, 13, 'r', '']]
+	},
+
+	{
+		//Four Columns, lol not sure what the solution is atm but we can test or just change lvl
+		goal: 1,
+		permitted: 5,
+		boxes: [[0, 4, 'b', ''], [0, 5, 't', ''], [1, 9, 'b', ''], [1, 10, 't', ''], [2, 1, 'b', ''], [2, 2, 't', ''], [3, 7, 'b', ''], [3, 8, 't', '']]
+	},
+
+	{
 		goal : 10,
 		permitted : 7,
 		boxes : [[10, 5, "tblr", ""]]
 	},
+
 	{
 		goal : 4,
 		permitted : 7,
