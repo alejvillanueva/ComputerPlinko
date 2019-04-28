@@ -1,6 +1,6 @@
 function drawSelector() {
 	var rowitem = 10;
-	var levwid = width/rowitem;
+	var levwid = gWidth/rowitem;
 	for (var i = 0; i < levels.length - 1; i++) {
 		strokeWeight(1);
 		stroke("black");
