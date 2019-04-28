@@ -18,12 +18,27 @@ Ball.prototype.show = function() {
 }
 
 Ball.prototype.translateX = function(x) {
-  Matter.Body.translate(this.body, {x:x, y:0});
-  if (this.body.position.x < 0 || this.body.position.x > gHeight) {
-    Matter.Body.translate(this.body, {x:-x * box_row, y:0});
+  this.setColumn(this.column() + x);
+  if (this.column() < 0) {
+    this.setColumn(0);
+  } else if (this.column() > box_col - 1) {
+    this.setColumn(box_col - 1);
   }
 }
 
 Ball.prototype.column = function() {
   return floor(this.body.position.x / boxheight)
 }
+
+Ball.prototype.setColumn = function(new_x) {
+  // takes a number 0 through box_col - 1
+  Matter.Body.setPosition(this.body, {x: (new_x + .5) * boxheight, y: 0})
+}
+
+
+
+
+
+
+
+
