@@ -2,6 +2,7 @@ var won = false;
 var lost = false;
 var fallTime = 0;
 var box_row = 15;
+var box_col = 15;
 var level;
 var levelsBeat = 0;
 var droplets = [];
@@ -42,10 +43,10 @@ function setup() {
     }
     boxes.push(temp);
   }
-  levelSetup(0);
-
 
   ball = new Ball(boxheight * (floor(box_row/2) + .5), 0, boxheight);
+  levelSetup(0);
+
   world.gravity.y = 0;
 
   textAlign(CENTER, CENTER);
@@ -132,16 +133,10 @@ function rendLines() {
     fill("red");
     rect(boxheight * i, gHeight-boxheight/2, boxheight, boxheight);
   }
-
-  fill("#545861");
-  rect(boxheight * goal, gHeight-boxheight/2, boxheight, boxheight);
-
   
   stroke("#6b6d73");
   noFill();
-  for (var i = 0; i < box_row; i++) {
-    // line( i * boxheight, boxheight, gHeight - boxheight * i, gHeight - boxheight)
-  }
+
   for (var i = 0; i < box_row; i++) {
     line(i * boxheight, boxheight, i * boxheight, gHeight - boxheight);
     line(0, i * boxheight, gHeight, i * boxheight);
@@ -156,13 +151,23 @@ function rendLines() {
   line(boxheight * 2, boxheight, gHeight, gHeight - boxheight);
   line(boxheight, gHeight - boxheight, gHeight - boxheight, boxheight);
 
-  strokeWeight(5);
+  fill("#545861");
+  noStroke();
+  rect(boxheight * goal, gHeight-boxheight/2, boxheight, boxheight);
+
+
+  fill("#545861");
+  rect(box_col * boxheight, 0, gWidth, gHeight);
+
+
+  strokeWeight(6);
   stroke("#545861");
   fill("#545861");
   line(0, gHeight - boxheight/2, gHeight, gHeight - boxheight/2);
   line(0, boxheight/2, gHeight, boxheight/2);
   stroke(color("#6b6d73"));
-  line(gHeight + 2, 0, gHeight + 2, gHeight);
+  line(box_col * boxheight + 3, 0, box_col * boxheight + 3, gHeight);
+  // line(gHeight + 2, 0, gHeight + 2, gHeight);
 }
 
 
@@ -190,6 +195,8 @@ function keyPressed() {
     return ;
   }
   if (won || lost) {
+    World.clear(world);
+    ball = new Ball(boxheight * (floor(box_row/2) + .5), 0, boxheight);
     if (won && level < levels.length - 2) {
       levelSetup(level + 1);
       levelsBeat = max(levelsBeat, level + 1);
@@ -197,16 +204,13 @@ function keyPressed() {
       levelSetup(level);
     } else {
       won = false; lost = false; world.gravity.y = 0;
-      World.clear(world);
-      ball = new Ball(boxheight * (floor(box_row/2) + .5), 0, boxheight);
+      // ball = new Ball(boxheight * (floor(box_row/2) + .5), 0, boxheight);
       states = {levelSelector:true, levelDropping:false, levelDropped:false, levelPlay: false};
       newdrip();
       return ;
     }
 
     won = false; lost = false; world.gravity.y = 0;
-    World.clear(world);
-    ball = new Ball(boxheight * (floor(box_row/2) + .5), 0, boxheight);
     states = {levelSelector: false, levelPlay:true, levelDropping:false, levelDropped:false};
     newdrip();
     
