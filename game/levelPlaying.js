@@ -28,7 +28,7 @@ function levelPlay() {
 }
 
 function levelPlaymousePressed() {
-  if (hovering[1] > 0 && hovering[1] < box_row - 1) {
+  if (hovering[1] > 0 && hovering[1] < box_row - 1 && hovering[0] < box_col) {
     // if part of level
     if (boxes[hovering[0]][hovering[1]][hovering[2]] === 2 || boxes[hovering[0]][hovering[1]][hovering[2]] === 3) { /*nothing*/ }
     // if triangle is already added
@@ -54,8 +54,11 @@ function levelPlaykeyPressed() {
   if (key == " ") {
     world.gravity.y = .8;
     addTrianglesToWorld();
-    World.add(world, Bodies.rectangle(gHeight + 10, gHeight, 20, gHeight * 2, options));
+    // right wall physics rectangle
+    World.add(world, Bodies.rectangle(box_col * boxheight + 10, gHeight, 20, gHeight * 2, options));
+    // bottom floor physics rectangle
     World.add(world, Bodies.rectangle(0, gHeight + 20, gHeight * 2, 40, options));
+    // left wall physics rectangle
     World.add(world, Bodies.rectangle(-10, gHeight, 20, gHeight * 2, options));
     for (var i = 1; i < box_row; i++) {
       World.add(world, Bodies.rectangle(i * boxheight, gHeight, 2, boxheight, options));
@@ -64,10 +67,10 @@ function levelPlaykeyPressed() {
     states = {levelPlay:false, levelDropping:true, levelDropped:false};
   }
   if (keyCode == LEFT_ARROW) {
-    ball.translateX(-boxheight);
+    ball.translateX(-1);
   }
   if (keyCode == RIGHT_ARROW) {
-    ball.translateX(boxheight);
+    ball.translateX(1);
   }
 }
 
