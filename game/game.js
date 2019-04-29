@@ -118,6 +118,9 @@ function rendKey() {
   } else {
     fill(lerpColor(to1, to2, (placed)/floor(permitted)));
   }
+  if (permitted + placed === 0) {
+    fill("red");
+  }
   textSize(200);
   text(permitted, 0, -50);
   translate(0, 70);

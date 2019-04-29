@@ -8,9 +8,22 @@ function levelPlay() {
   }
   rendLines();
   ball.show();
-  for (var i = 0; i < conveyor_balls.length; i++) {
-    conveyor_balls[i].update();
-    conveyor_balls[i].show();
+  if (level === 14) {
+    var q = 46.666666666666664;
+    stroke("yellow");
+    strokeWeight(2);
+    line(9.25 * q, 4.5 * q, 9.25 * q, 12.5 * q);
+    line(9.75 * q, 4.5 * q, 9.75 * q, 12.5 * q);
+    noStroke();
+    for (var i = 0; i < conveyor_balls.length; i++) {
+      conveyor_balls[i].update();
+      conveyor_balls[i].show();
+    }
+    fill("purple");
+    ellipse(9.25 * q, 4.5 * q, 20, 20);
+    ellipse(9.75 * q, 4.5 * q, 20, 20);
+    ellipse(9.25 * q, 12.5 * q, 20, 20);
+    ellipse(9.75 * q, 12.5 * q, 20, 20);
   }
 
 
