@@ -76,7 +76,7 @@ function levelPlaykeyPressed() {
     world.gravity.y = .8;
     addTrianglesToWorld();
     // right wall physics rectangle
-    World.add(world, Bodies.rectangle(box_col * boxheight + 10, gHeight, 20, gHeight * 2, options));
+    World.add(world, Bodies.rectangle(box_col * boxheight + 20, gHeight, 40, gHeight * 2, options));
     // bottom floor physics rectangle
     World.add(world, Bodies.rectangle(0, gHeight + 20, gHeight * 2, 40, options));
     // left wall physics rectangle
