@@ -17,7 +17,9 @@ var boxes = [];
 var slimecolor = "limegreen";
 var hovering = [0, 0, 't'];
 var states = {levelSelector:true, levelDropping:false, levelDropped:false, levelPlay: false};
+var piecePlacing = {triangle: true, seesaw: false};
 var ball, world, engine;
+var conveyor_balls = [];
 var Engine = Matter.Engine,
   World = Matter.World,
   Events = Matter.Events,

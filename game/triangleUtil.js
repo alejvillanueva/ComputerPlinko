@@ -75,28 +75,32 @@ function addTrianglesToWorld() {
     for (var i = 0; i < box_row; i++) {//y
       var c = j * boxheight;
       var d = i * boxheight;
-      if (boxes[j][i]["t"] != 0) {
+      if (isTriType(boxes[j][i]["t"])) {
         var cent = Matter.Vertices.centre([{x:c, y:d},{x:c + boxheight, y:d},{x:c + boxheight/2, y:d + boxheight/2}]);
         var body = Bodies.fromVertices(cent.x, cent.y, [{x:c, y:d},{x:c + boxheight, y:d},{x:c + boxheight/2, y:d + boxheight/2}], options[boxes[j][i]["t"]]);
         World.add(world, body);
       }
-      if (boxes[j][i]["b"] != 0) {
+      if (isTriType(boxes[j][i]["b"])) {
         var cent = Matter.Vertices.centre([{x:c, y:d + boxheight},{x:c + boxheight, y:d + boxheight},{x:c + boxheight/2, y:d + boxheight/2}]);
         var body = Bodies.fromVertices(cent.x, cent.y, [{x:c, y:d + boxheight},{x:c + boxheight, y:d + boxheight},{x:c + boxheight/2, y:d + boxheight/2}], options[boxes[j][i]["b"]]);
         World.add(world, body);
       }
-      if (boxes[j][i]["l"] != 0) {
+      if (isTriType(boxes[j][i]["l"])) {
         var cent = Matter.Vertices.centre([{x:c, y:d},{x:c, y:d + boxheight},{x:c + boxheight/2, y:d + boxheight/2}]);
         var body = Bodies.fromVertices(cent.x, cent.y, [{x:c, y:d},{x:c, y:d + boxheight},{x:c + boxheight/2, y:d + boxheight/2}], options[boxes[j][i]["l"]]);
         World.add(world, body);
       }
-      if (boxes[j][i]["r"] != 0) {
+      if (isTriType(boxes[j][i]["r"])) {
         var cent = Matter.Vertices.centre([{x:c + boxheight, y:d + boxheight},{x:c + boxheight/2, y:d + boxheight/2},{x:c + boxheight, y:d}]);
         var body = Bodies.fromVertices(cent.x, cent.y, [{x:c + boxheight, y:d + boxheight},{x:c + boxheight/2, y:d + boxheight/2},{x:c + boxheight, y:d}], options[boxes[j][i]["r"]]);
         World.add(world, body);
       }
     }
   }
+}
+
+function isTriType(x) {
+  return x != 0 && x != 4; 
 }
 
 function deepcopy(obj) {

@@ -8,6 +8,14 @@ function levelPlay() {
   }
   rendLines();
   ball.show();
+  for (var i = 0; i < conveyor_balls.length; i++) {
+    conveyor_balls[i].update();
+    conveyor_balls[i].show();
+  }
+
+
+
+  // button to go back to main level-select menu
   if (mouseRect(gHeight + (gWidth - gHeight)/2 - 100, gHeight - 100, 200, 40)) {
     fill("blue");
     if (mouseIsPressed) {
@@ -75,6 +83,12 @@ function levelPlaykeyPressed() {
 }
 
 function rendMouse() {
+  if (piecePlacing["triangle"]) {
+    rendTriToBePlaced();
+  }
+}
+
+function rendTriToBePlaced() {
   if (boxes[hovering[0]][hovering[1]][hovering[2]] === 1) {
     fill("#cffff0");
   } else if (boxes[hovering[0]][hovering[1]][hovering[2]] === 0) {
@@ -88,7 +102,6 @@ function rendMouse() {
     rendTri(hovering[0], hovering[1], hovering[2]);
   }
 }
-
 
 
 function rendBoxes() {

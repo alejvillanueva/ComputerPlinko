@@ -5,6 +5,10 @@ function levelDropping() {
   rendKey();
   rendYellowTris();
   ball.show();
+  for (var i = 0; i < conveyor_balls.length; i++) {
+    conveyor_balls[i].update();
+    conveyor_balls[i].show();
+  }
   ballVelocityCheck();
 }
 
@@ -28,12 +32,12 @@ function rendYellowTris() {
 }
 
 function ballVelocityCheck() {
-  if (ball.body.position.x + ball.body.position.y - ball.body.positionPrev.x - ball.body.positionPrev.y < .05) {
+  if (dist(ball.body.position.x, ball.body.position.y, ball.body.positionPrev.x, ball.body.positionPrev.y) < .05) {
     timeResting += 1;
   } else {
     timeResting = 0;
   }
-  if (fallTime > 400 || timeResting > 40 || (timeResting > 30 && ball.body.position.y < gHeight - boxheight)) {
+  if (fallTime > 800 || timeResting > 40 /*|| (timeResting > 30 && ball.body.position.y < gHeight - boxheight)*/) {
     if (ball.column() != goal || ball.body.position.y < gHeight - boxheight/2) {
       lost = true;
       slimecolor = "red";
