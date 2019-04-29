@@ -4,7 +4,7 @@ function levelDropping() {
   rendLines();
   rendKey();
   rendYellowTris();
-  ball.show();
+  
   if (level === 14) {
     var q = 46.666666666666664;
     stroke("yellow");
@@ -22,7 +22,7 @@ function levelDropping() {
     ellipse(9.25 * q, 12.5 * q, 20, 20);
     ellipse(9.75 * q, 12.5 * q, 20, 20);
   }
-  
+  ball.show();
   ballVelocityCheck();
 }
 
