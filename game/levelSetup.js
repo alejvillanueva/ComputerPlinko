@@ -18,7 +18,17 @@ function levelSetup(l) {
     }
     levelArrangements[l]["played"] = true;
   }
+
+  wormhole_pairs = [];
+  if (levels[l].hasOwnProperty("wormhole_pairs")) {
+    for (var i = 0; i < levels[l]["wormhole_pairs"].length; i++) {
+      var new_wh_pair = new wh_pair(levels[l]["wormhole_pairs"][i]);
+      wormhole_pairs.push(new_wh_pair);
+    }
+  }
+
   
+  conveyor_balls = [];
   if (levels[l].hasOwnProperty("conveyor_balls")) {
     for (var i = 0; i < levels[l]["conveyor_balls"].length; i++) {
       console.log(levels[l]["conveyor_balls"][i].x);

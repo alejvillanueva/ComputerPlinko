@@ -22,6 +22,10 @@ function levelDropping() {
     ellipse(9.25 * q, 12.5 * q, 20, 20);
     ellipse(9.75 * q, 12.5 * q, 20, 20);
   }
+  for (var i = 0; i < wormhole_pairs.length; i++) {
+    wormhole_pairs[i].update();
+    wormhole_pairs[i].show();
+  }
   ball.show();
   ballVelocityCheck();
 }

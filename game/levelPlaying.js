@@ -7,6 +7,11 @@ function levelPlay() {
     rendMouse();
   }
   rendLines();
+  for (var i = 0; i < wormhole_pairs.length; i++) {
+    wormhole_pairs[i].update();
+    wormhole_pairs[i].show();
+  }
+
   ball.show();
   if (level === 14) {
     var q = 46.666666666666664;
@@ -32,6 +37,8 @@ function levelPlay() {
   if (mouseRect(gHeight + (gWidth - gHeight)/2 - 100, gHeight - 100, 200, 40)) {
     fill("blue");
     if (mouseIsPressed) {
+      levelArrangements[level]["setup"] = deepcopy(boxes);
+      levelArrangements[level]["placed"] = deepcopy(placed);
       goToSelect = true;
       states = {mainMenu: true, levelSelector: false, levelDropping:false, levelDropped:false, levelPlay: false};
     }

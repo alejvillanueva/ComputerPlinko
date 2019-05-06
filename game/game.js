@@ -21,10 +21,16 @@ var states = {mainMenu: true, levelSelector:false, levelDropping:false, levelDro
 var piecePlacing = {triangle: true, seesaw: false};
 var ball, world, engine;
 var conveyor_balls = [];
+var wormhole_pairs = [];
+var spiral_img;
 var Engine = Matter.Engine,
   World = Matter.World,
   Events = Matter.Events,
   Bodies = Matter.Bodies;
+
+function preload() {
+  spiral_img = loadImage('assets/spiral.png');
+}
 
 function setup() {
   mycanv = createCanvas(gWidth, gHeight);
@@ -32,7 +38,8 @@ function setup() {
   mycanv.style('z-index','-1');
   mycanv.mousePressed(myMousePressed)
   background("#545861");
-
+  imageMode(CENTER);
+  angleMode(DEGREES);
 
   engine = Engine.create();
   world = engine.world;
