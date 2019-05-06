@@ -16,7 +16,7 @@ var placed = 0;
 var boxes = [];
 var slimecolor = "limegreen";
 var hovering = [0, 0, 't'];
-var states = {levelSelector:true, levelDropping:false, levelDropped:false, levelPlay: false};
+var states = {mainMenu: true, levelSelector:false, levelDropping:false, levelDropped:false, levelPlay: false};
 var piecePlacing = {triangle: true, seesaw: false};
 var ball, world, engine;
 var conveyor_balls = [];
@@ -63,6 +63,10 @@ function draw() {
   noStroke();
   background("#545861");
   fill("#82f4d1");
+
+  if (states["mainMenu"]){
+    drawMenu();
+  }
   if (states["levelSelector"]) {
     drawSelector();
   }
