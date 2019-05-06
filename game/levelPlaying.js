@@ -33,7 +33,7 @@ function levelPlay() {
     fill("blue");
     if (mouseIsPressed) {
       goToSelect = true;
-      states = {levelSelector:true, levelDropping:false, levelDropped:false, levelPlay: false};
+      states = {mainMenu: true, levelSelector: false, levelDropping:false, levelDropped:false, levelPlay: false};
     }
   } else {
     fill("grey");
