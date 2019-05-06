@@ -101,8 +101,8 @@ wh_pair.prototype.update = function() {
 wh_pair.prototype.show = function() {
   noStroke();
   fill(this.c);
-  ellipse(this.wh1.x * boxheight, this.wh1.y * boxheight, this.r, this.r);
-  ellipse(this.wh2.x * boxheight, this.wh2.y * boxheight, this.r, this.r);
+  ellipse(this.wh1.x * boxheight, this.wh1.y * boxheight, this.r - 4, this.r - 4);
+  ellipse(this.wh2.x * boxheight, this.wh2.y * boxheight, this.r - 4, this.r - 4);
   this.rot_ang += 2;
   drawspiral(this.wh1.x * boxheight, this.wh1.y * boxheight, this.r, this.rot_ang);
   drawspiral(this.wh2.x * boxheight, this.wh2.y * boxheight, this.r, this.rot_ang);
