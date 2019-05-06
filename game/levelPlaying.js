@@ -73,6 +73,8 @@ function levelPlaykeyPressed() {
     isStatic: true
   };
   if (key == " ") {
+    levelArrangements[level]["setup"] = deepcopy(boxes);
+    levelArrangements[level]["placed"] = deepcopy(placed);
     world.gravity.y = .8;
     addTrianglesToWorld();
     // right wall physics rectangle

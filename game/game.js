@@ -14,6 +14,7 @@ var gHeight = 700;
 var boxheight, goal, permitted;
 var placed = 0;
 var boxes = [];
+var levelArrangements = [];
 var slimecolor = "limegreen";
 var hovering = [0, 0, 't'];
 var states = {mainMenu: true, levelSelector:false, levelDropping:false, levelDropped:false, levelPlay: false};
@@ -44,6 +45,11 @@ function setup() {
       temp.push(new boxObj());
     }
     boxes.push(temp);
+  }
+
+  for (var i = 0; i < levels.length; i++) {
+    var temp = { placed: 0, setup: deepcopy(boxes), played : false };
+    levelArrangements.push(temp);
   }
 
   ball = new Ball(boxheight * (floor(box_row/2) + .5), 0, boxheight);

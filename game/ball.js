@@ -72,6 +72,3 @@ Ball.prototype.setColumn = function(new_x) {
 Ball.prototype.setPosition = function(x, y) {
   Matter.Body.setPosition(this.body, {x: x, y: y})
 }
-
-
-
