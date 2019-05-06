@@ -16,9 +16,9 @@ function drawMenu(){
 		selectButton.mousePressed(lvlSelect);
 	}
 
-	background(79, 82, 89);
+	background(186, 186, 191);
 
-	fill(5, 17, 242);
+	fill(242, 73, 118);
 	textSize(80);
 	textFont('Gugi');
 	text("Computer Plinko", width / 2, height / 2 - 100);
