@@ -1,6 +1,6 @@
 function levelSetup(l) {
   if (l === levels.length - 1) {
-    states = {levelSelector:true, levelDropping:false, levelDropped:false, levelPlay: false};
+    states = {mainMenu: true, levelSelector:false, levelDropping:false, levelDropped:false, levelPlay: false};
     return ;
   }
   level = l;
