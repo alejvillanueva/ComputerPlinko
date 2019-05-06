@@ -3,6 +3,7 @@
   <head>
   	<title>COMPUTER PLINKO 🖲🎯</title>
     <meta name="viewport" width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0>
+    <link href="https://fonts.googleapis.com/css?family=Gugi" rel="stylesheet"> 
     <script src="./libs/p5.min.js"></script>
     <script src="./libs/p5.dom.min.js"></script>
     <script src="./libs/matter.js"></script>
@@ -14,10 +15,28 @@
     <script src="./game/levelDropping.js"></script>
     <script src="./game/triangleUtil.js"></script>
     <script src="./game/levelSelector.js"></script>
+    <script src="./game/mainMenu.js"></script>
+
   </head>
   <style type="text/css">
     * {
       background: #000000;
+    }
+
+    button {
+      position: absolute;
+      background: red;
+      color: white;
+      font-family: Gugi;
+      font-size: 25px;
+      height: 50px;
+      width: 200px;
+      border: none;
+      border-radius: 15px;
+    }
+
+    button:hover{
+      background: pink;
     }
   </style>
   <body>
