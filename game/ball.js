@@ -88,10 +88,10 @@ function wh_pair(wh_obj) {
 wh_pair.prototype.update = function() {
   this.transport_time += 1;
   if (this.transport_time >= 31) {
-    if (dist(this.wh1.x * boxheight, this.wh1.y * boxheight, ball.body.position.x, ball.body.position.y) < 20) {
+    if (dist(this.wh1.x * boxheight, this.wh1.y * boxheight, ball.body.position.x, ball.body.position.y) < 35) {
       ball.setPosition(this.wh2.x * boxheight, this.wh2.y * boxheight);
       this.transport_time = 0;
-    } else if (dist(this.wh2.x * boxheight, this.wh2.y * boxheight, ball.body.position.x, ball.body.position.y) < 20) {
+    } else if (dist(this.wh2.x * boxheight, this.wh2.y * boxheight, ball.body.position.x, ball.body.position.y) < 35) {
       ball.setPosition(this.wh1.x * boxheight, this.wh1.y * boxheight);
       this.transport_time = 0;
     }
@@ -104,8 +104,8 @@ wh_pair.prototype.show = function() {
   ellipse(this.wh1.x * boxheight, this.wh1.y * boxheight, this.r - 4, this.r - 4);
   ellipse(this.wh2.x * boxheight, this.wh2.y * boxheight, this.r - 4, this.r - 4);
   this.rot_ang += 2;
-  drawspiral(this.wh1.x * boxheight, this.wh1.y * boxheight, this.r, this.rot_ang);
-  drawspiral(this.wh2.x * boxheight, this.wh2.y * boxheight, this.r, this.rot_ang);
+  // drawspiral(this.wh1.x * boxheight, this.wh1.y * boxheight, this.r, this.rot_ang);
+  // drawspiral(this.wh2.x * boxheight, this.wh2.y * boxheight, this.r, this.rot_ang);
 }
 
 function drawspiral(x, y, r, angle) {

@@ -1,7 +1,8 @@
 function drawSelector() {
 	var rowitem = 10;
 	var levwid = gWidth/rowitem;
-	for (var i = 0; i < levels.length - 1; i++) {
+	for (var i = 0; i < levelsBeat; i++) {
+	// for (var i = 0; i < levels.length - 1; i++) {
 		strokeWeight(1);
 		stroke("black");
 		if (mouseRect(levwid * (i % rowitem), levwid * floor(i/rowitem), levwid, levwid)) {

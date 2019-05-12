@@ -4,7 +4,7 @@ var fallTime = 0;
 var box_row = 15;
 var box_col = 15;
 var level;
-var levelsBeat = 0;
+var levelsBeat = 1;
 var droplets = [];
 var dropletspeeds = [];
 var dropsfallen = true;
@@ -29,7 +29,7 @@ var Engine = Matter.Engine,
   Bodies = Matter.Bodies;
 
 function preload() {
-  spiral_img = loadImage('assets/spiral.png');
+  // spiral_img = loadImage('assets/spiral.png');
 }
 
 function setup() {
