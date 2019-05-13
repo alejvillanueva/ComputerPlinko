@@ -43,7 +43,7 @@ Ball.prototype.update = function() {
 }
 
 Ball.prototype.show = function() {
-  fill("blue");
+  fill(101, 191, 182);
   if (this.has_wormhole) {
     fill("pink")
   }

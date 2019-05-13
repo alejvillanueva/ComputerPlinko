@@ -3,6 +3,7 @@ var lost = false;
 var fallTime = 0;
 var box_row = 15;
 var box_col = 15;
+var score = 0;
 var level;
 var levelsBeat = 1;
 var droplets = [];
@@ -97,9 +98,12 @@ function draw() {
     textSize(80);
     fill("black");
     if (won) {
-      text("NICE!", gWidth/2, gHeight/2 );
+      score = calculateScore(permitted);
+      text("NICE!", gWidth/2, gHeight/2 - 50);
+      textSize(60);
+      text("Your score: " + score, gWidth/2, gHeight/2 + 20);
       textSize(40);
-      text("Press any key to proceed.", gWidth/2, gHeight/2 + 60);
+      text("Press any key to proceed.", gWidth/2, gHeight/2 + 120);
     } else if (lost) {
       text("YOU LOST :(", gWidth/2, gHeight/2)
       textSize(40);
@@ -108,6 +112,18 @@ function draw() {
     }
   }
   // debugWorld();
+}
+
+function calculateScore(trisUsed){
+  var totalAllowed = levels[level].permitted;
+  if (totalAllowed == 0){
+      return 250 ;
+  }
+
+  else{
+    return ((totalAllowed - placed) * 100);
+  }
+  
 }
 
 function debugWorld() {
@@ -127,16 +143,16 @@ function rendKey() {
   var tot = 0;
   push();
   translate(gHeight + (gWidth - gHeight)/2, gHeight/2 + 70);
-  var from = color("limegreen");
-  var to1 = color("yellow");
-  var to2 = color("red");
+  var from = color("#62CC85");
+  var to1 = color("#DFC71B");
+  var to2 = color("#F00713");
   if (placed < floor((permitted + placed)/2)) {
     fill(lerpColor(from, to1, placed/floor(permitted/2)));
   } else {
     fill(lerpColor(to1, to2, (placed)/floor(permitted)));
   }
   if (permitted + placed === 0) {
-    fill("red");
+    fill("#F00713");
   }
   textSize(200);
   text(permitted, 0, -50);
@@ -152,7 +168,7 @@ function rendLines() {
   for (var i = 0; i < box_row; i++) {
     fill("#545861");
     rect(boxheight * i, -boxheight/2, boxheight, boxheight);
-    fill("red");
+    fill("#D90479");
     rect(boxheight * i, gHeight-boxheight/2, boxheight, boxheight);
   }
   
@@ -213,7 +229,7 @@ function keyPressed() {
   }
 
   if (won && level >= levels.level - 1) {
-    states = {levelSelector:true, levelDropping:false, levelDropped:false, levelPlay: false};
+    states = {mainMenu: true, levelSelector:false, levelDropping:false, levelDropped:false, levelPlay: false};
     return ;
   }
   if (won || lost) {

@@ -58,10 +58,10 @@ function ballVelocityCheck() {
   if (fallTime > 800 || timeResting > 40 /*|| (timeResting > 30 && ball.body.position.y < gHeight - boxheight)*/) {
     if (ball.column() != goal || ball.body.position.y < gHeight - boxheight/2) {
       lost = true;
-      slimecolor = "red";
+      slimecolor = "#F00713";
     } else {
       won = true;
-      slimecolor = "limegreen";
+      slimecolor = "#62CC85";
     }
     states = {levelPlay:false, levelDropping:false, levelDropped:true};
   }

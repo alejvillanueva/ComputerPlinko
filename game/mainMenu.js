@@ -29,7 +29,7 @@ function begin(){
 	selectButton = selectButton.remove();
 
 	states = {mainMenu:false, levelSelector: false, levelPlay: true, levelDropping:false, levelDropped:false};
-	levelSetup(levelsBeat);
+	levelSetup(levelsBeat - 1);
 
 	}
 

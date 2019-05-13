@@ -35,7 +35,7 @@ function levelPlay() {
 
   // button to go back to main level-select menu
   if (mouseRect(gHeight + (gWidth - gHeight)/2 - 100, gHeight - 100, 200, 40)) {
-    fill("blue");
+    fill("pink");
     if (mouseIsPressed) {
       levelArrangements[level]["setup"] = deepcopy(boxes);
       levelArrangements[level]["placed"] = deepcopy(placed);
@@ -43,11 +43,11 @@ function levelPlay() {
       states = {mainMenu: true, levelSelector: false, levelDropping:false, levelDropped:false, levelPlay: false};
     }
   } else {
-    fill("grey");
+    fill(186, 186, 191);
   }
   rect(gHeight + (gWidth - gHeight)/2 - 100, gHeight - 100, 200, 40);
   textSize(20);
-  fill("white");
+  fill(242, 73, 118);
   text("RETURN TO MENU",gHeight + (gWidth - gHeight)/2 , gHeight - 78);
   rendKey();
   if (goToSelect) {
