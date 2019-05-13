@@ -6,6 +6,7 @@ var box_col = 15;
 var score = 0;
 var level;
 var levelsBeat = 1;
+// var levelsBeat = levels.length;
 var droplets = [];
 var dropletspeeds = [];
 var dropsfallen = true;
@@ -30,7 +31,7 @@ var Engine = Matter.Engine,
   Bodies = Matter.Bodies;
 
 function preload() {
-  // spiral_img = loadImage('assets/spiral.png');
+  spiral_img = loadImage('assets/spiral.png');
 }
 
 function setup() {
@@ -41,6 +42,8 @@ function setup() {
   background("#545861");
   imageMode(CENTER);
   angleMode(DEGREES);
+
+  levelsBeat = levels.length - 1;
 
   engine = Engine.create();
   world = engine.world;

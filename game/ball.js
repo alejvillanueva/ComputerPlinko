@@ -80,7 +80,7 @@ function wh_pair(wh_obj) {
   this.c = wh_obj.c;
   this.r = boxheight * 2;
   this.transport_time = 31;
-  this.rot_ang = 0;
+  this.rot_ang = 60;
   console.log(this);
   return this;
 }
@@ -103,9 +103,34 @@ wh_pair.prototype.show = function() {
   fill(this.c);
   ellipse(this.wh1.x * boxheight, this.wh1.y * boxheight, this.r - 4, this.r - 4);
   ellipse(this.wh2.x * boxheight, this.wh2.y * boxheight, this.r - 4, this.r - 4);
-  this.rot_ang += 2;
-  // drawspiral(this.wh1.x * boxheight, this.wh1.y * boxheight, this.r, this.rot_ang);
-  // drawspiral(this.wh2.x * boxheight, this.wh2.y * boxheight, this.r, this.rot_ang);
+  this.rot_ang += 1;
+  // if (this.rot_ang === 90) {
+  //   this.rot_ang = 60;
+  // }
+  // // this.rot_ang = this.rot_ang % 90;// % 30;
+  // drawspiral2(this.wh1.x * boxheight, this.wh1.y * boxheight, this.r, this.rot_ang, this.c);
+  drawspiral(this.wh1.x * boxheight, this.wh1.y * boxheight, this.r, this.rot_ang);
+  drawspiral(this.wh2.x * boxheight, this.wh2.y * boxheight, this.r, this.rot_ang);
+}
+
+function drawspiral2(x, y, r, angle, c) {
+  var side_factor = 0.945
+  var current_height = r;
+  var current_width = r;
+  push();
+  translate(x, y);
+  for (let i = 0; i < 60; ++i) {
+    push();
+    noStroke();
+    translate(r, r);
+    rotate(angle * i);
+    fill(lerpColor(color(c), color("white"), i / 60));
+    rect(0, 0, current_width, current_height);
+    current_width = + (side_factor * current_width);
+    current_height = + (side_factor * current_height);
+    pop();
+  }
+  pop();
 }
 
 function drawspiral(x, y, r, angle) {

@@ -1,5 +1,4 @@
 function levelPlay() {
-  var goToSelect = false;
   checkHover();
   rendBoxes();
   rendLines();
@@ -13,7 +12,7 @@ function levelPlay() {
   }
 
   ball.show();
-  if (level === 14) {
+  if (level === 18) {
     var q = 46.666666666666664;
     stroke("yellow");
     strokeWeight(2);
@@ -39,7 +38,6 @@ function levelPlay() {
     if (mouseIsPressed) {
       levelArrangements[level]["setup"] = deepcopy(boxes);
       levelArrangements[level]["placed"] = deepcopy(placed);
-      goToSelect = true;
       states = {mainMenu: true, levelSelector: false, levelDropping:false, levelDropped:false, levelPlay: false};
     }
   } else {
@@ -50,9 +48,6 @@ function levelPlay() {
   fill(242, 73, 118);
   text("RETURN TO MENU",gHeight + (gWidth - gHeight)/2 , gHeight - 78);
   rendKey();
-  if (goToSelect) {
-    background("#545861");
-  }
 }
 
 function levelPlaymousePressed() {
