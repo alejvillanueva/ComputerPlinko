@@ -25,6 +25,8 @@ var ball, world, engine;
 var conveyor_balls = [];
 var wormhole_pairs = [];
 var spiral_img;
+var returnButton;
+
 var Engine = Matter.Engine,
   World = Matter.World,
   Events = Matter.Events,
@@ -43,11 +45,19 @@ function setup() {
   imageMode(CENTER);
   angleMode(DEGREES);
 
-  levelsBeat = levels.length - 1;
+  //Set levels beat again for debugging
+ // levelsBeat = levels.length - 1;
 
   engine = Engine.create();
   world = engine.world;
   boxheight = gHeight/box_row;
+
+  returnButton = createButton("Return To Menu");
+  returnButton.addClass('button');
+  returnButton.mousePressed(toMenu);
+  returnButton.position(windowWidth / 2 + 240, windowHeight / 2 + 250);
+  returnButton.hide();
+
 
 
   for (var x = 0; x < box_row; x++) {
@@ -240,8 +250,10 @@ function keyPressed() {
     ball = new Ball(boxheight * (floor(box_row/2) + .5), 0, boxheight);
     if (won && level < levels.length - 2) {
       levelSetup(level + 1);
+      returnButton.show();
       levelsBeat = max(levelsBeat, level + 1);
     } else if (lost) {
+      returnButton.show();
       levelSetup(level);
     } else {
       won = false; lost = false; world.gravity.y = 0;
@@ -297,5 +309,18 @@ function newdrip() {
 
 function windowResized() {
   mycanv = createCanvas(gWidth, gHeight);
+}
+
+function toMenu(){
+  returnButton.hide();
+
+  if(states["levelPlay"]){
+      levelArrangements[level]["setup"] = deepcopy(boxes);
+      levelArrangements[level]["placed"] = deepcopy(placed);
+      goToSelect = true;
+      states = {mainMenu: true, levelSelector: false, levelDropping:false, levelDropped:false, levelPlay: false};
+  } else{
+      states = {mainMenu: true, levelSelector:false, levelDropping:false, levelDropped:false, levelPlay: false};
+  }
 }
 
