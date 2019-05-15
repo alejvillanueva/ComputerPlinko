@@ -26,6 +26,8 @@ var conveyor_balls = [];
 var wormhole_pairs = [];
 var spiral_img;
 var returnButton;
+var trisLeft; 
+var trisLeft_text;
 
 var Engine = Matter.Engine,
   World = Matter.World,
@@ -46,17 +48,29 @@ function setup() {
   angleMode(DEGREES);
 
   //Set levels beat again for debugging
- // levelsBeat = levels.length - 1;
+  levelsBeat = levels.length - 1;
 
   engine = Engine.create();
   world = engine.world;
   boxheight = gHeight/box_row;
 
+  //Button
   returnButton = createButton("Return To Menu");
-  returnButton.addClass('button');
+  returnButton.addClass('returnButton');
   returnButton.mousePressed(toMenu);
-  returnButton.position(windowWidth / 2 + 240, windowHeight / 2 + 250);
+  returnButton.position(windowWidth / 2 + 275, windowHeight / 2 + 250);
   returnButton.hide();
+
+  //Tri Left Num
+  trisLeft = createDiv(score);
+  trisLeft.addClass('permitted');
+  trisLeft.position(windowWidth / 2 + 320, windowHeight / 2 - 50);
+  trisLeft.hide();
+
+  trisLeft_text = createDiv("triangles left");
+  trisLeft_text.addClass('triLeft');
+  trisLeft_text.position(windowWidth / 2 + 280, windowHeight / 2 + 100);
+  trisLeft_text.hide();
 
 
 
@@ -110,6 +124,7 @@ function draw() {
     background(slimecolor);
     textSize(80);
     fill("black");
+    textFont("Gugi");
     if (won) {
       score = calculateScore(permitted);
       text("NICE!", gWidth/2, gHeight/2 - 50);
@@ -167,12 +182,16 @@ function rendKey() {
   if (permitted + placed === 0) {
     fill("#F00713");
   }
+
+  /*
   textSize(200);
   text(permitted, 0, -50);
   translate(0, 70);
   textSize(40);
   text("triangles left", 0, 0)
+  */
   pop();
+
 }
 
 function rendLines() {
@@ -251,9 +270,13 @@ function keyPressed() {
     if (won && level < levels.length - 2) {
       levelSetup(level + 1);
       returnButton.show();
+      trisLeft.show();
+      trisLeft_text.show();
       levelsBeat = max(levelsBeat, level + 1);
     } else if (lost) {
       returnButton.show();
+      trisLeft.show();
+      trisLeft_text.show();
       levelSetup(level);
     } else {
       won = false; lost = false; world.gravity.y = 0;
@@ -313,7 +336,8 @@ function windowResized() {
 
 function toMenu(){
   returnButton.hide();
-
+  trisLeft.hide();
+  trisLeft_text.hide();
   if(states["levelPlay"]){
       levelArrangements[level]["setup"] = deepcopy(boxes);
       levelArrangements[level]["placed"] = deepcopy(placed);

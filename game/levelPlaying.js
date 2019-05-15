@@ -41,11 +41,13 @@ function levelPlaymousePressed() {
     else if (boxes[hovering[0]][hovering[1]][hovering[2]] === 1) {
       boxes[hovering[0]][hovering[1]][hovering[2]] = 0;
       permitted += 1;
+      trisLeft.html(permitted);
       placed -= 1;
     }
     else if (0 < permitted) {//tri not added yet
       boxes[hovering[0]][hovering[1]][hovering[2]] = 1;
       permitted -= 1;
+      trisLeft.html(permitted);
       placed += 1;
     }
   }
@@ -59,6 +61,9 @@ function levelPlaykeyPressed() {
   };
   if (key == " ") {
     returnButton.hide();
+    trisLeft.hide();
+    trisLeft_text.hide();
+
     levelArrangements[level]["setup"] = deepcopy(boxes);
     levelArrangements[level]["placed"] = deepcopy(placed);
     world.gravity.y = .8;

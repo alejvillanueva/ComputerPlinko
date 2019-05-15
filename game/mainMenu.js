@@ -32,6 +32,8 @@ function begin(){
 	selectButton = selectButton.remove();
 	title = title.remove();
 	returnButton.show();
+	trisLeft.show();
+  	trisLeft_text.show();
 	states = {mainMenu:false, levelSelector: false, levelPlay: true, levelDropping:false, levelDropped:false};
 	console.log(levelsBeat);
 	levelSetup(levelsBeat - 1);
