@@ -25,9 +25,7 @@ var ball, world, engine;
 var conveyor_balls = [];
 var wormhole_pairs = [];
 var spiral_img;
-var returnButton;
-var trisLeft; 
-var trisLeft_text;
+var trisLeft, trisLeft_text, bigBox, returnButton; 
 
 var Engine = Matter.Engine,
   World = Matter.World,
@@ -35,12 +33,15 @@ var Engine = Matter.Engine,
   Bodies = Matter.Bodies;
 
 function preload() {
-  spiral_img = loadImage('assets/spiral.png');
+  // spiral_img = loadImage('assets/spiral.png');
 }
 
 function setup() {
+  boxheight = gHeight/box_row;
+  gWidth = 15 * boxheight;
   mycanv = createCanvas(gWidth, gHeight);
-  mycanv.position((windowWidth - gWidth)/2, (windowHeight - gHeight)/2);
+  mycanv.position((windowWidth - 350 - gWidth)/2, (windowHeight - gHeight)/2);
+  // mycanv.position((windowWidth - gWidth)/2, (windowHeight - gHeight)/2);
   mycanv.style('z-index','-1');
   mycanv.mousePressed(myMousePressed)
   background("#545861");
@@ -52,27 +53,28 @@ function setup() {
 
   engine = Engine.create();
   world = engine.world;
-  boxheight = gHeight/box_row;
+
+  // big ass box
+  bigBox = createDiv("");
+  bigBox.addClass('sidebar');
+
+  //Tri Left Num
+  trisLeft = createDiv(score);
+  trisLeft.addClass('permitted');
+  bigBox.child(trisLeft);
+  trisLeft.hide();
+
+  trisLeft_text = createDiv("triangles left");
+  trisLeft_text.addClass('triLeft');
+  bigBox.child(trisLeft_text);
+  trisLeft_text.hide();
 
   //Button
   returnButton = createButton("Return To Menu");
   returnButton.addClass('returnButton');
   returnButton.mousePressed(toMenu);
-  returnButton.position(windowWidth / 2 + 275, windowHeight / 2 + 250);
+  bigBox.child(returnButton);
   returnButton.hide();
-
-  //Tri Left Num
-  trisLeft = createDiv(score);
-  trisLeft.addClass('permitted');
-  trisLeft.position(windowWidth / 2 + 320, windowHeight / 2 - 50);
-  trisLeft.hide();
-
-  trisLeft_text = createDiv("triangles left");
-  trisLeft_text.addClass('triLeft');
-  trisLeft_text.position(windowWidth / 2 + 280, windowHeight / 2 + 100);
-  trisLeft_text.hide();
-
-
 
   for (var x = 0; x < box_row; x++) {
     var temp = [];
@@ -97,6 +99,7 @@ function setup() {
     droplets.push(0);
     dropletspeeds.push(random(7, 15));
   }
+  bigBox.hide();
 }
 
 function draw() {
@@ -248,6 +251,9 @@ function myMousePressed() {
   if (states["levelDropping"]) {
     levelDroppingmousePressed();
   }
+  if (won || lost) {
+    goOff();
+  }
 }
 
 
@@ -265,32 +271,35 @@ function keyPressed() {
     return ;
   }
   if (won || lost) {
-    World.clear(world);
-    ball = new Ball(boxheight * (floor(box_row/2) + .5), 0, boxheight);
-    if (won && level < levels.length - 2) {
-      levelSetup(level + 1);
-      returnButton.show();
-      trisLeft.show();
-      trisLeft_text.show();
-      levelsBeat = max(levelsBeat, level + 1);
-    } else if (lost) {
-      returnButton.show();
-      trisLeft.show();
-      trisLeft_text.show();
-      levelSetup(level);
-    } else {
-      won = false; lost = false; world.gravity.y = 0;
-      // ball = new Ball(boxheight * (floor(box_row/2) + .5), 0, boxheight);
-      states = {levelSelector:true, levelDropping:false, levelDropped:false, levelPlay: false};
-      newdrip();
-      return ;
-    }
-
-    won = false; lost = false; world.gravity.y = 0;
-    states = {levelSelector: false, levelPlay:true, levelDropping:false, levelDropped:false};
-    newdrip();
-    
+    goOff();
   }
+}
+
+function goOff() {
+  World.clear(world);
+  ball = new Ball(boxheight * (floor(box_row/2) + .5), 0, boxheight);
+  if (won && level < levels.length - 2) {
+    levelSetup(level + 1);
+    returnButton.show();
+    trisLeft.show();
+    trisLeft_text.show();
+    levelsBeat = max(levelsBeat, level + 1);
+  } else if (lost) {
+    returnButton.show();
+    trisLeft.show();
+    trisLeft_text.show();
+    levelSetup(level);
+  } else {
+    won = false; lost = false; world.gravity.y = 0;
+    // ball = new Ball(boxheight * (floor(box_row/2) + .5), 0, boxheight);
+    states = {levelSelector:true, levelDropping:false, levelDropped:false, levelPlay: false};
+    newdrip();
+    return ;
+  }
+
+  won = false; lost = false; world.gravity.y = 0;
+  states = {levelSelector: false, levelPlay:true, levelDropping:false, levelDropped:false};
+  newdrip();
 }
 
 function drawslime() {
@@ -335,6 +344,7 @@ function windowResized() {
 }
 
 function toMenu(){
+  bigBox.hide();
   returnButton.hide();
   trisLeft.hide();
   trisLeft_text.hide();

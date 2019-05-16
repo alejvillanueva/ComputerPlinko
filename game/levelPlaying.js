@@ -61,8 +61,8 @@ function levelPlaykeyPressed() {
   };
   if (key == " ") {
     returnButton.hide();
-    trisLeft.hide();
-    trisLeft_text.hide();
+    // trisLeft.hide();
+    // trisLeft_text.hide();
 
     levelArrangements[level]["setup"] = deepcopy(boxes);
     levelArrangements[level]["placed"] = deepcopy(placed);

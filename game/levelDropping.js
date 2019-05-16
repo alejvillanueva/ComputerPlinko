@@ -5,7 +5,7 @@ function levelDropping() {
   rendKey();
   rendYellowTris();
   
-  if (level === 14) {
+  if (level === 18) {
     var q = 46.666666666666664;
     stroke("yellow");
     strokeWeight(2);

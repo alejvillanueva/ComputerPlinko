@@ -35,9 +35,9 @@ function begin(){
 	trisLeft.show();
   	trisLeft_text.show();
 	states = {mainMenu:false, levelSelector: false, levelPlay: true, levelDropping:false, levelDropped:false};
-	console.log(levelsBeat);
+	// console.log(levelsBeat);
 	levelSetup(levelsBeat - 1);
-
+	bigBox.show();
 	}
 
 function lvlSelect(){
@@ -45,6 +45,6 @@ function lvlSelect(){
 	selectButton = selectButton.remove();
 	title = title.remove();
 	returnButton.show();
-
+	bigBox.show();
 	states = {mainMenu:false, levelSelector: true, levelPlay: false, levelDropping:false, levelDropped:false};
 }
