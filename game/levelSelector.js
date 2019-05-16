@@ -18,6 +18,8 @@ function drawSelector() {
 		text(i + 1, levwid * (i % rowitem) + levwid * .5, levwid * floor(i/rowitem) + levwid * .5);
 		if (mouseIsPressed && mouseRect(levwid * (i % rowitem), levwid * floor(i/rowitem), levwid, levwid)) {
 			states = {levelSelector:false, levelDropping:false, levelDropped:false, levelPlay: true};
+			trisLeft.show();
+  			trisLeft_text.show();
 			levelSetup(i);
 		}
 	}

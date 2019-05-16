@@ -1,11 +1,15 @@
 function levelSetup(l) {
+
   if (l === levels.length - 1) {
     states = {mainMenu: true, levelSelector:false, levelDropping:false, levelDropped:false, levelPlay: false};
     return ;
   }
+
   level = l;
   box_col = levels[level]["box_col"];
   ball.setColumn(levels[l]["ball_start"]);
+  var perm = levels[l]["permitted"]
+  trisLeft.html(perm);
 
   if (levelArrangements[l]["played"]) {
     boxes = levelArrangements[l]["setup"];

@@ -30,23 +30,6 @@ function levelPlay() {
     ellipse(9.75 * q, 12.5 * q, 20, 20);
   }
 
-
-
-  // button to go back to main level-select menu
-  if (mouseRect(gHeight + (gWidth - gHeight)/2 - 100, gHeight - 100, 200, 40)) {
-    fill("pink");
-    if (mouseIsPressed) {
-      levelArrangements[level]["setup"] = deepcopy(boxes);
-      levelArrangements[level]["placed"] = deepcopy(placed);
-      states = {mainMenu: true, levelSelector: false, levelDropping:false, levelDropped:false, levelPlay: false};
-    }
-  } else {
-    fill(186, 186, 191);
-  }
-  rect(gHeight + (gWidth - gHeight)/2 - 100, gHeight - 100, 200, 40);
-  textSize(20);
-  fill(242, 73, 118);
-  text("RETURN TO MENU",gHeight + (gWidth - gHeight)/2 , gHeight - 78);
   rendKey();
 }
 
@@ -58,11 +41,13 @@ function levelPlaymousePressed() {
     else if (boxes[hovering[0]][hovering[1]][hovering[2]] === 1) {
       boxes[hovering[0]][hovering[1]][hovering[2]] = 0;
       permitted += 1;
+      trisLeft.html(permitted);
       placed -= 1;
     }
     else if (0 < permitted) {//tri not added yet
       boxes[hovering[0]][hovering[1]][hovering[2]] = 1;
       permitted -= 1;
+      trisLeft.html(permitted);
       placed += 1;
     }
   }
@@ -75,6 +60,10 @@ function levelPlaykeyPressed() {
     isStatic: true
   };
   if (key == " ") {
+    returnButton.hide();
+    trisLeft.hide();
+    trisLeft_text.hide();
+
     levelArrangements[level]["setup"] = deepcopy(boxes);
     levelArrangements[level]["placed"] = deepcopy(placed);
     world.gravity.y = .8;

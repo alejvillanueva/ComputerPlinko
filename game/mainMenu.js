@@ -1,5 +1,6 @@
 var startButton;
 var selectButton;
+var title;
 
 function drawMenu(){
 	if(!startButton){
@@ -18,17 +19,23 @@ function drawMenu(){
 
 	background(186, 186, 191);
 
-	fill(242, 73, 118);
-	textSize(80);
-	textFont('Gugi');
-	text("Computer Plinko", width / 2, height / 2 - 100);
+	if(!title){
+		title = createDiv('Computer Plinko');
+		title.addClass('title');
+		title.position(windowWidth / 2 - 317, windowHeight / 2 - 150);
+	}
+
 }
 
 function begin(){
 	startButton = startButton.remove();
 	selectButton = selectButton.remove();
-
+	title = title.remove();
+	returnButton.show();
+	trisLeft.show();
+  	trisLeft_text.show();
 	states = {mainMenu:false, levelSelector: false, levelPlay: true, levelDropping:false, levelDropped:false};
+	console.log(levelsBeat);
 	levelSetup(levelsBeat - 1);
 
 	}
@@ -36,6 +43,8 @@ function begin(){
 function lvlSelect(){
 	startButton = startButton.remove();
 	selectButton = selectButton.remove();
+	title = title.remove();
+	returnButton.show();
 
 	states = {mainMenu:false, levelSelector: true, levelPlay: false, levelDropping:false, levelDropped:false};
 }
