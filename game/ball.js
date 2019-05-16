@@ -109,8 +109,8 @@ wh_pair.prototype.show = function() {
   // }
   // // this.rot_ang = this.rot_ang % 90;// % 30;
   // drawspiral2(this.wh1.x * boxheight, this.wh1.y * boxheight, this.r, this.rot_ang, this.c);
-  // drawspiral(this.wh1.x * boxheight, this.wh1.y * boxheight, this.r, this.rot_ang);
-  // drawspiral(this.wh2.x * boxheight, this.wh2.y * boxheight, this.r, this.rot_ang);
+  drawspiral(this.wh1.x * boxheight, this.wh1.y * boxheight, this.r, this.rot_ang);
+  drawspiral(this.wh2.x * boxheight, this.wh2.y * boxheight, this.r, this.rot_ang);
 }
 
 function drawspiral2(x, y, r, angle, c) {
