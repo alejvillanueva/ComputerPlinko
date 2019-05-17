@@ -12,22 +12,24 @@ function levelPlay() {
   }
 
   ball.show();
-  if (level === 18) {
-    var q = 46.666666666666664;
-    stroke("yellow");
-    strokeWeight(2);
-    line(9.25 * q, 4.5 * q, 9.25 * q, 12.5 * q);
-    line(9.75 * q, 4.5 * q, 9.75 * q, 12.5 * q);
-    noStroke();
-    for (var i = 0; i < conveyor_balls.length; i++) {
-      conveyor_balls[i].update();
-      conveyor_balls[i].show();
-    }
-    fill("purple");
-    ellipse(9.25 * q, 4.5 * q, 20, 20);
-    ellipse(9.75 * q, 4.5 * q, 20, 20);
-    ellipse(9.25 * q, 12.5 * q, 20, 20);
-    ellipse(9.75 * q, 12.5 * q, 20, 20);
+
+  stroke("yellow");
+  strokeWeight(2);
+  for (var i = 0; i < conveyor_endings.length; i += 2) {
+    var x = conveyor_endings[i].x;
+    var y = conveyor_endings[i].y;
+    var x1 = conveyor_endings[i + 1].x;
+    var y1 = conveyor_endings[i + 1].y;
+    line(x * boxheight, y * boxheight, x1 * boxheight, y1 * boxheight);
+  }
+  noStroke();
+  for (var i = 0; i < conveyor_balls.length; i++) {
+    conveyor_balls[i].update();
+    conveyor_balls[i].show();
+  }
+  fill("purple");
+  for (var i = 0; i < conveyor_endings.length; i++) {
+    ellipse(conveyor_endings[i].x * boxheight, conveyor_endings[i].y * boxheight, 20, 20);
   }
 
   rendKey();

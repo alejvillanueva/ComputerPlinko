@@ -23,6 +23,7 @@ var states = {mainMenu: true, levelSelector:false, levelDropping:false, levelDro
 var piecePlacing = {triangle: true, seesaw: false};
 var ball, world, engine;
 var conveyor_balls = [];
+var conveyor_endings = [];
 var wormhole_pairs = [];
 var spiral_img;
 var trisLeft, trisLeft_text, bigBox, returnButton; 
