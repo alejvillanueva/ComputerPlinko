@@ -8,8 +8,7 @@ function levelSetup(l) {
   level = l;
   box_col = levels[level]["box_col"];
   ball.setColumn(levels[l]["ball_start"]);
-  var perm = levels[l]["permitted"]
-  trisLeft.html(perm);
+  
 
   if (levelArrangements[l]["played"]) {
     boxes = levelArrangements[l]["setup"];
@@ -47,8 +46,11 @@ function levelSetup(l) {
         )
     }
   }
-  permitted = deepcopy(levels[l]["permitted"]) - deepcopy(placed);
+  permitted = deepcopy(levels[l]["permitted"][0]) - deepcopy(placed);
   goal = deepcopy(levels[l]["goal"]);
+
+  var perm = permitted;
+  trisLeft.html(perm);
 }
 
 function resetGrid() {

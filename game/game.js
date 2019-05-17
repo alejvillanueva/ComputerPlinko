@@ -85,7 +85,7 @@ function setup() {
   }
 
   for (var i = 0; i < levels.length; i++) {
-    var temp = { placed: 0, setup: deepcopy(boxes), played : false };
+    var temp = { placed: 0, setup: deepcopy(boxes), played : false, stars: -1 };
     levelArrangements.push(temp);
   }
 
@@ -129,10 +129,28 @@ function draw() {
     fill("black");
     textFont("Gugi");
     if (won) {
-      score = calculateScore(permitted);
-      text("NICE!", gWidth/2, gHeight/2 - 50);
-      textSize(60);
-      text("Your score: " + score, gWidth/2, gHeight/2 + 20);
+      score = calculateScore(placed);
+      if(score === 3){
+        text("Excellent!", gWidth/2, gHeight/2 - 125);
+        star(width / 2 - 150, height / 2, 30, 70, "yellow");
+        star(width / 2, height / 2, 30, 70, "yellow");
+        star(width / 2 + 150, height / 2, 30, 70, "yellow");
+      }
+
+      if(score === 2){
+        text("Nice!", gWidth/2, gHeight/2 - 125);
+        star(width / 2 - 150, height / 2, 30, 70, "yellow");
+        star(width / 2, height / 2, 30, 70, "yellow");
+        star(width / 2 + 150, height / 2, 30, 70, "black");
+      }
+
+      if(score === 1){
+        text("Okay!", gWidth/2, gHeight/2 - 125);
+        star(width / 2 - 150, height / 2, 30, 70, "yellow");
+        star(width / 2, height / 2, 30, 70, "black");
+        star(width / 2 + 150, height / 2, 30, 70, "black");
+      }
+
       textSize(40);
       text("Press any key to proceed.", gWidth/2, gHeight/2 + 120);
     } else if (lost) {
@@ -146,15 +164,17 @@ function draw() {
 }
 
 function calculateScore(trisUsed){
-  var totalAllowed = levels[level].permitted;
-  if (totalAllowed == 0){
-      return 250 ;
-  }
-
-  else{
-    return ((totalAllowed - placed) * 100);
+  var stars; 
+  if(placed <= levels[level]["permitted"][2]){
+    stars = 3;
+  } else if (placed <= levels[level]["permitted"][1]){
+    stars = 2;
+  } else if (placed <= levels[level]["permitted"][0]){
+    stars = 1;
   }
   
+  levelArrangements[level]["stars"] = stars;  
+  return stars;
 }
 
 function debugWorld() {
@@ -186,13 +206,6 @@ function rendKey() {
     fill("#F00713");
   }
 
-  /*
-  textSize(200);
-  text(permitted, 0, -50);
-  translate(0, 70);
-  textSize(40);
-  text("triangles left", 0, 0)
-  */
   pop();
 
 }

@@ -107,3 +107,25 @@ function deepcopy(obj) {
   return JSON.parse(JSON.stringify(obj));
 }
 
+function star(x, y, radius1, radius2, c) {
+  var npoints = 5;
+  push();
+  fill(c);
+  angleMode(RADIANS);
+  translate(x, y);
+  rotate(- PI / 9.95);
+  let angle = TWO_PI / npoints;
+  let halfAngle = angle / 2.0;
+  beginShape();
+  for (let a = 0; a < TWO_PI; a += angle) {
+    let sx = cos(a) * radius2;
+    let sy = sin(a) * radius2;
+    vertex(sx, sy);
+    sx = cos(a + halfAngle) * radius1;
+    sy = sin(a + halfAngle) * radius1;
+    vertex(sx, sy);
+  }
+  endShape(CLOSE);
+  pop();
+}
+
