@@ -32,18 +32,32 @@ function levelSetup(l) {
 
   
   conveyor_balls = [];
+  conveyor_endings = [];
   if (levels[l].hasOwnProperty("conveyor_balls")) {
     for (var i = 0; i < levels[l]["conveyor_balls"].length; i++) {
-      console.log(levels[l]["conveyor_balls"][i].x);
-      console.log(boxheight);
-      conveyor_balls.push(
+      // console.log(levels[l]["conveyor_balls"][i].x);
+      // console.log(boxheight);
+      var x1 = levels[l]["conveyor_balls"][i]["wh_to_x"];
+      var y1 = levels[l]["conveyor_balls"][i]["wh_to_y"];
+      var x2 = levels[l]["conveyor_balls"][i]["wh_from_x"];
+      var y2 = levels[l]["conveyor_balls"][i]["wh_from_y"];
+      var balls_between = levels[l]["conveyor_balls"][i]["num_between"];
+
+      conveyor_endings.push(createVector(x1, y1));
+      conveyor_endings.push(createVector(x2, y2));
+
+      for (var bb = 0; bb < balls_between; bb++) {
+        var lx = lerp(x1, x2 , bb/balls_between);
+        var ly = lerp(y1, y2 , bb/balls_between);
+        conveyor_balls.push(
         new Ball(
-          levels[l]["conveyor_balls"][i]["x"],
-          levels[l]["conveyor_balls"][i]["y"],
+          lx,
+          ly,
           levels[l]["conveyor_balls"][i]["r"],
           levels[l]["conveyor_balls"][i]
           )
         )
+      }
     }
   }
   permitted = deepcopy(levels[l]["permitted"][0]) - deepcopy(placed);
