@@ -43,7 +43,6 @@ var levels = [
 		box_col: 4,
 		ball_start: 1
 	},
-// 
 	{
 		goal : 1,
 		permitted : [8, 5, 3],
