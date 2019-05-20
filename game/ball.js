@@ -11,7 +11,6 @@ function Ball(x, y, r, wormhole_info = false) {
     isStatic: true
   }
   this.r = r/2;
-  // this.body.label = "ball";
   if (wormhole_info != false) {
     this.body = Bodies.circle(x * boxheight, y * boxheight, this.r, wormhole_options);
     this.r = this.r * boxheight;
@@ -105,33 +104,9 @@ wh_pair.prototype.show = function() {
   ellipse(this.wh1.x * boxheight, this.wh1.y * boxheight, this.r - 4, this.r - 4);
   ellipse(this.wh2.x * boxheight, this.wh2.y * boxheight, this.r - 4, this.r - 4);
   this.rot_ang += .2;
-  // if (this.rot_ang === 90) {
-  //   this.rot_ang = 60;
-  // }
-  // // this.rot_ang = this.rot_ang % 90;// % 30;
-  // drawspiral2(this.wh1.x * boxheight, this.wh1.y * boxheight, this.r, this.rot_ang, this.c);
+
   drawspiral(this.wh1.x * boxheight, this.wh1.y * boxheight, this.r, this.rot_ang);
   drawspiral(this.wh2.x * boxheight, this.wh2.y * boxheight, this.r, this.rot_ang);
-}
-
-function drawspiral2(x, y, r, angle, c) {
-  var side_factor = 0.945
-  var current_height = r;
-  var current_width = r;
-  push();
-  translate(x, y);
-  for (let i = 0; i < 60; ++i) {
-    push();
-    noStroke();
-    translate(r, r);
-    rotate(angle * i);
-    fill(lerpColor(color(c), color("white"), i / 60));
-    rect(0, 0, current_width, current_height);
-    current_width = + (side_factor * current_width);
-    current_height = + (side_factor * current_height);
-    pop();
-  }
-  pop();
 }
 
 function drawspiral(x, y, r, angle) {

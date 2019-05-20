@@ -57,12 +57,4 @@ var scoreTicker = function(p) {
     totalTris = t[0];
   }
 
-  // p.loseATri = function() {
-
-  // }
-
-  // p.gainATri = function() {
-
-  // }
-
 }
