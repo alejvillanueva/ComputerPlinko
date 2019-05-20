@@ -31,8 +31,6 @@ function levelPlay() {
   for (var i = 0; i < conveyor_endings.length; i++) {
     ellipse(conveyor_endings[i].x * boxheight, conveyor_endings[i].y * boxheight, 20, 20);
   }
-
-  rendKey();
 }
 
 function levelPlaymousePressed() {
@@ -63,8 +61,6 @@ function levelPlaykeyPressed() {
   };
   if (key == " ") {
     returnButton.hide();
-    // trisLeft.hide();
-    // trisLeft_text.hide();
 
     levelArrangements[level]["setup"] = deepcopy(boxes);
     levelArrangements[level]["placed"] = deepcopy(placed);

@@ -2,7 +2,6 @@ function drawSelector() {
 	background("#bababf");
 	var rowitem = 10;
 	var levwid = gWidth/rowitem;
-	// for (var i = 0; i < levelsBeat; i++) {
 	for (var i = 0; i < levels.length - 1; i++) {
 		strokeWeight(1);
 		stroke("#FDC3C2");

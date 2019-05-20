@@ -30,6 +30,11 @@ function levelSetup(l) {
     }
   }
 
+  if (levels[l].hasOwnProperty("maxFallTime")) {
+    maxFallTime = levels[l]["maxFallTime"];
+  } else {
+    maxFallTime = 800;
+  }
   
   conveyor_balls = [];
   conveyor_endings = [];
@@ -66,10 +71,8 @@ function levelSetup(l) {
   var perm = permitted;
   trisLeft.html(perm);
 
-  // ticker.hide();
   ticker.reLoop();
   ticker.setTicker(levels[l]["permitted"]);
-  // ticker.reveal();
 }
 
 function resetGrid() {

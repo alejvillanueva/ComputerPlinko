@@ -2,7 +2,6 @@ function levelDropping() {
   fallTime += 1;
   rendBoxes();
   rendLines();
-  rendKey();
   rendYellowTris();
   
   stroke("yellow");
@@ -43,6 +42,7 @@ function levelDroppingkeyPressed() {
 function rendYellowTris() {
   // console.log(world);
   fill("yellow");
+  noStroke();
   for (var i = 0; i < world.bodies.length; i++) {
     if (world.bodies[i].label == "falltri") {
       var verts = world.bodies[i].vertices;
@@ -57,7 +57,7 @@ function ballVelocityCheck() {
   } else {
     timeResting = 0;
   }
-  if (fallTime > 800 || timeResting > 40 /*|| (timeResting > 30 && ball.body.position.y < gHeight - boxheight)*/) {
+  if (fallTime > maxFallTime || timeResting > 40 /*|| (timeResting > 30 && ball.body.position.y < gHeight - boxheight)*/) {
     if (ball.column() != goal || ball.body.position.y < gHeight - boxheight/2) {
       lost = true;
       slimecolor = "#F00713";

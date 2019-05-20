@@ -8,7 +8,6 @@ var score = 0;
 var level;
 var ticker;
 var levelsBeat = 1;
-// var levelsBeat = levels.length;
 var droplets = [];
 var dropletspeeds = [];
 var dropsfallen = true;
@@ -36,7 +35,7 @@ var Engine = Matter.Engine,
   Bodies = Matter.Bodies;
 
 function preload() {
-  spiral_img = loadImage('assets/spiral.png');
+  // spiral_img = loadImage('assets/spiral.png');
 }
 
 function setup() {
@@ -52,7 +51,7 @@ function setup() {
   angleMode(DEGREES);
 
   //Set levels beat again for debugging
-  levelsBeat = levels.length - 1;
+  // levelsBeat = levels.length - 1;
 
   engine = Engine.create();
   world = engine.world;
@@ -137,7 +136,7 @@ function draw() {
     fill("black");
     textFont("Gugi");
     if (won) {
-      score = calculateScore(placed);
+      score = calculateScore(placed - 1);
       levelArrangements[level]["stars"] = score;
 
       var messages = ["", "Okay!", "Nice!", "Excellent!"];
@@ -157,8 +156,15 @@ function draw() {
   // debugWorld();
 }
 
-function calculateScore(trisUsed){
-  var stars;
+function calculateScore(trisUsed) {
+  if (levels[level]["permitted"][0] === levels[level]["permitted"][1] && 
+    levels[level]["permitted"][1] === levels[level]["permitted"][2]) {
+    return 3;
+  }
+  if (levels[level]["permitted"][0] === 0) {
+    return 3;
+  }
+  var stars = 3;
   for (var i = 0; i < 3; i++) {
     if(trisUsed <= levels[level]["permitted"][i]){
       stars = i + 1;
@@ -177,28 +183,7 @@ function debugWorld() {
   text(hovering, gWidth/2, gHeight/2);
 }
 
-function rendKey() {
-  noStroke();
-  var wid = floor((gWidth - gHeight)/boxheight);
-  var trnsl = (gWidth - gHeight - wid * boxheight)/2;
-  var tot = 0;
-  push();
-  translate(gHeight + (gWidth - gHeight)/2, gHeight/2 + 70);
-  var from = color("#62CC85");
-  var to1 = color("#DFC71B");
-  var to2 = color("#F00713");
-  if (placed < floor((permitted + placed)/2)) {
-    fill(lerpColor(from, to1, placed/floor(permitted/2)));
-  } else {
-    fill(lerpColor(to1, to2, (placed)/floor(permitted)));
-  }
-  if (permitted + placed === 0) {
-    fill("#F00713");
-  }
 
-  pop();
-
-}
 
 function rendLines() {
   strokeWeight(1);
