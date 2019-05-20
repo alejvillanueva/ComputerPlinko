@@ -138,6 +138,6 @@ function drawspiral(x, y, r, angle) {
   push();
   translate(x, y);
   rotate(angle);
-  // image(spiral_img, 0, 0, r, r);
+  image(spiral_img, 0, 0, r, r);
   pop();
 }
