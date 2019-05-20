@@ -65,6 +65,11 @@ function levelSetup(l) {
 
   var perm = permitted;
   trisLeft.html(perm);
+
+  // ticker.hide();
+  ticker.reLoop();
+  ticker.setTicker(levels[l]["permitted"]);
+  // ticker.reveal();
 }
 
 function resetGrid() {

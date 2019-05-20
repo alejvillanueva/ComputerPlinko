@@ -107,6 +107,16 @@ function deepcopy(obj) {
   return JSON.parse(JSON.stringify(obj));
 }
 
+function threeStar(x, y, w, illuminated, tot = 3) {
+  for (var i = 0; i < 3; i++) {
+    if (i < illuminated) {
+      star(x + (i - 1) * w * 2.2, y, w * (3/7), w, "yellow");
+    } else if (i < tot) {
+      star(x + (i - 1) * w * 2.2, y, w * (3/7), w, "black");
+    }
+  }
+}
+
 function star(x, y, radius1, radius2, c) {
   var npoints = 5;
   push();

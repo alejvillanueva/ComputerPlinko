@@ -1,10 +1,12 @@
 var won = false;
 var lost = false;
 var fallTime = 0;
+var maxFallTime = 800;
 var box_row = 15;
 var box_col = 15;
 var score = 0;
 var level;
+var ticker;
 var levelsBeat = 1;
 // var levelsBeat = levels.length;
 var droplets = [];
@@ -91,7 +93,12 @@ function setup() {
   }
 
   ball = new Ball(boxheight * (floor(box_row/2) + .5), 0, boxheight);
+
+  ticker = new p5(scoreTicker, "c1");
+
   levelSetup(0);
+
+  ticker.stopLoop();
 
   world.gravity.y = 0;
 
@@ -131,26 +138,12 @@ function draw() {
     textFont("Gugi");
     if (won) {
       score = calculateScore(placed);
-      if(score === 3){
-        text("Excellent!", gWidth/2, gHeight/2 - 125);
-        star(width / 2 - 150, height / 2, 30, 70, "yellow");
-        star(width / 2, height / 2, 30, 70, "yellow");
-        star(width / 2 + 150, height / 2, 30, 70, "yellow");
-      }
+      levelArrangements[level]["stars"] = score;
 
-      if(score === 2){
-        text("Nice!", gWidth/2, gHeight/2 - 125);
-        star(width / 2 - 150, height / 2, 30, 70, "yellow");
-        star(width / 2, height / 2, 30, 70, "yellow");
-        star(width / 2 + 150, height / 2, 30, 70, "black");
-      }
+      var messages = ["", "Okay!", "Nice!", "Excellent!"];
+      text(messages[score], gWidth/2, gHeight/2 - 125);
 
-      if(score === 1){
-        text("Okay!", gWidth/2, gHeight/2 - 125);
-        star(width / 2 - 150, height / 2, 30, 70, "yellow");
-        star(width / 2, height / 2, 30, 70, "black");
-        star(width / 2 + 150, height / 2, 30, 70, "black");
-      }
+      threeStar(width/2, height/2, 70, score);
 
       textSize(40);
       text("Press any key to proceed.", gWidth/2, gHeight/2 + 120);
@@ -165,16 +158,12 @@ function draw() {
 }
 
 function calculateScore(trisUsed){
-  var stars; 
-  if(placed <= levels[level]["permitted"][2]){
-    stars = 3;
-  } else if (placed <= levels[level]["permitted"][1]){
-    stars = 2;
-  } else if (placed <= levels[level]["permitted"][0]){
-    stars = 1;
+  var stars;
+  for (var i = 0; i < 3; i++) {
+    if(trisUsed <= levels[level]["permitted"][i]){
+      stars = i + 1;
+    }
   }
-  
-  levelArrangements[level]["stars"] = stars;  
   return stars;
 }
 
@@ -354,7 +343,7 @@ function newdrip() {
 }
 
 function windowResized() {
-  mycanv = createCanvas(gWidth, gHeight);
+  mycanv.position((windowWidth - 350 - gWidth)/2, (windowHeight - gHeight)/2);
 }
 
 function toMenu(){
@@ -362,6 +351,7 @@ function toMenu(){
   returnButton.hide();
   trisLeft.hide();
   trisLeft_text.hide();
+  ticker.stopLoop();
   if(states["levelPlay"]){
       levelArrangements[level]["setup"] = deepcopy(boxes);
       levelArrangements[level]["placed"] = deepcopy(placed);
@@ -371,4 +361,5 @@ function toMenu(){
       states = {mainMenu: true, levelSelector:false, levelDropping:false, levelDropped:false, levelPlay: false};
   }
 }
+
 
