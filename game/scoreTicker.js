@@ -18,7 +18,7 @@ var scoreTicker = function(p) {
       var currColor = 0;
       p.noStroke();
       for (var i = 0; i < totalTris; i++) {
-      	console.log(tickerColors[calculateScore(i)]);
+      	// console.log(tickerColors[calculateScore(i)]);
       	p.fill(tickerColors[calculateScore(i)]);
         p.rect(i * bWid, 0, bWid, 30);
       }

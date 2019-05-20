@@ -104,7 +104,7 @@ wh_pair.prototype.show = function() {
   fill(this.c);
   ellipse(this.wh1.x * boxheight, this.wh1.y * boxheight, this.r - 4, this.r - 4);
   ellipse(this.wh2.x * boxheight, this.wh2.y * boxheight, this.r - 4, this.r - 4);
-  this.rot_ang += 1;
+  this.rot_ang += .2;
   // if (this.rot_ang === 90) {
   //   this.rot_ang = 60;
   // }
