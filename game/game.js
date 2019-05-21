@@ -35,7 +35,11 @@ var Engine = Matter.Engine,
   Bodies = Matter.Bodies;
 
 function preload() {
+<<<<<<< HEAD
   spiral_img = loadImage('assets/spiral.png');
+=======
+   spiral_img = loadImage('assets/spiral.png');
+>>>>>>> cebd86f4db90439aac3dfb255de2b14a72a83dec
 }
 
 function setup() {
